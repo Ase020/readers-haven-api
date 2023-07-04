@@ -22,7 +22,7 @@ puts "Seeding publishers..."
   name = Faker::Company.name
   address = Faker::Address.full_address
   email = Faker::Internet.email
-  telephone = Faker::PhoneNumber.phone_number
+  telephone = Faker::PhoneNumber.phone_number.delete('^0-9')
 
   Publisher.create!(
     name: name,
@@ -31,6 +31,7 @@ puts "Seeding publishers..."
     telephone: telephone
   )
 end
+
 
 puts "Seeding users..."
 
