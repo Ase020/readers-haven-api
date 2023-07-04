@@ -61,6 +61,7 @@ puts "Seeding books..."
   author_id = Author.pluck(:id).sample
   user_id = User.pluck(:id).sample
   publisher_id = Publisher.pluck(:id).sample
+  poster_url = "https://images.pexels.com/photos/16364335/pexels-photo-16364335/free-photo-of-city-road-landscape-people.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
 
   Book.create!(
     title: title,
@@ -70,7 +71,8 @@ puts "Seeding books..."
     price: price,
     author_id: author_id,
     user_id: user_id,
-    publisher_id: publisher_id
+    publisher_id: publisher_id,
+    poster_url: poster_url
   )
 end
 
