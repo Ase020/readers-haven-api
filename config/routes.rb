@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :author_publishers
   resources :authors
-  resources :publishers
   resources :users, only: [:index]
+  resources :publishers, only: [:show]
   resources :books do
   resources :reviews
   end
