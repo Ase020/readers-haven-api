@@ -22,6 +22,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def reset
+    user = User.find_by(email: params[:email])
+    if user
+      if params[:new_password] == params[:confirm_password]
+        hash_password = BCrypt::Password.create(params[:new_password])
+        user.update(password_digest: hash_password)
+        render json: {message: "Password reset successfully!"}, status: :ok
+      else
+        render json: {message: "Error! New password and confirm password do not match."}, status: :unprocessable_entity
+      end
+    else
+      render json: {error: "User not found!"}, status: :not_found
+    end
+  end
+
   private
   def user_params
     params.permit(:first_name, :last_name, :email, :image_url, :password, :password_confirmation)
