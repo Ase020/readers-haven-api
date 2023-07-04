@@ -6,13 +6,15 @@ puts "Seeding authors..."
   email = Faker::Internet.email
   nationality = Faker::Nation.nationality
   bio = Faker::Lorem.paragraph(sentence_count: 2)
+  image_url = "https://images.pexels.com/photos/13193108/pexels-photo-13193108.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
 
   Author.create!(
     name: name,
     gender: gender,
     email: email,
     nationality: nationality,
-    bio: bio
+    bio: bio,
+  image_url: image_url
   )
 end
 
