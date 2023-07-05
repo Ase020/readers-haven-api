@@ -27,6 +27,12 @@ module ReadersHavenApi
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins "*" # Replace with your frontend's URL
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
+    end
 
     config.session_store :cookie_store, key: '_your_app_session'
 
