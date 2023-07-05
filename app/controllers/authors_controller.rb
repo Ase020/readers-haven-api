@@ -3,4 +3,5 @@ class AuthorsController < ApplicationController
     authors = Author.all
     render json: authors, status: :ok
   end
+
 end
