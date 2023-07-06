@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :books do
   resources :reviews, only: [:index, :create]
   resources :reviews, only: [:show, :update, :destroy], param: :review_id
+  resources :profile, only: [:index, :show] do
   end
 
 end
