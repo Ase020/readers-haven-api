@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_book_not_found
-  before_action :authorize
-  skip_before_action :authorize, only: [:index]
+  # before_action :authorize
+  # skip_before_action :authorize, only: [:index]
   def index
     books = Book.all
     render json: books, status: :ok

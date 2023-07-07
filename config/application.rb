@@ -34,7 +34,8 @@ module ReadersHavenApi
       end
     end
 
-    config.session_store :cookie_store, key: '_your_app_session'
+    config.session_store :cookie_store
+    # , key: '_your_app_session'
 
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")

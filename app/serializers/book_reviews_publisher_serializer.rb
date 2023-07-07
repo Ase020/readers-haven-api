@@ -3,4 +3,5 @@ class BookReviewsPublisherSerializer < ActiveModel::Serializer
 
   has_many :reviews
   belongs_to :publisher
+  belongs_to :author
 end
