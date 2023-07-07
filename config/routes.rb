@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :books do
   # resources :authors, only: [:show]
   resources :reviews
+  get '/author', to: 'authors#book_author'
   end
   post "/signup", to: "users#create"
 

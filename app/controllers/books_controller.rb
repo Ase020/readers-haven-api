@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   # skip_before_action :authorize, only: [:index]
 
   def index
-    books = Book.all
+    books = Book.all.order(created_at: :desc)
     render json: books, status: :ok
   end
 
