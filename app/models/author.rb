@@ -9,4 +9,3 @@ class Author < ApplicationRecord
   validates :nationality, presence: true
   validates :bio, presence: true
 end
-

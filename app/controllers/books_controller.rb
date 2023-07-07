@@ -20,3 +20,4 @@ class BooksController < ApplicationController
     render json: {error: "Book not found"}, status: :not_found
   end
 end
+
