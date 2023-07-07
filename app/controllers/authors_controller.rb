@@ -13,6 +13,15 @@ class AuthorsController < ApplicationController
     render json: author, serializer: AuthorbookSerializer, status: :ok
   end
 
+  def book_author
+    book = Book.find_by(id: params[:book_id])
+    if book
+    author = book.author
+    render json: author, status: :ok
+    end
+
+  end
+
   private
   def find_author
     Author.find(params[:id])

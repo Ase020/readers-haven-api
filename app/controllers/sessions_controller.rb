@@ -11,15 +11,15 @@ class SessionsController < ApplicationController
     end
   end
 
-  # def show
-  #   user = User.find_by(email: params[:email])
-  #   if user&.authenticate(params[:password])
-  #     session[:user_id] = user.id
-  #     render json: user
-  #   else
-  #     render json: { error: "Invalid username or password" }, status: :unauthorized
-  #   end
-  # end
+  def show
+    user = User.find_by(email: params[:email])
+    if user&.authenticate(params[:password])
+      session[:user_id] = user.id
+      render json: user
+    else
+      render json: { error: "Invalid username or password" }, status: :unauthorized
+    end
+  end
 
   def destroy
     session[:user_id] = nil
