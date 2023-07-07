@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
   # before_action :authorize
   # skip_before_action :authorize, only: [:show, :create, :reset,]
-
   def index
     users = User.all
     render json: users, status: :ok
   end
   def create
-    user = User.create(user_params)
+    user = User.create!(user_params)
     if user.valid?
       render json: user, status: :created
     else

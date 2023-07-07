@@ -2,6 +2,7 @@ class AuthorsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_author_not_found
   # before_action :authorize
   # skip_before_action :authorize, only: :index
+
   def index
     authors = Author.all
     render json: authors, status: :ok
