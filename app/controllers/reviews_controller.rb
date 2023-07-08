@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
 
   def show
     book = find_book
-    review = book.reviews.find(params[:review_id])
+    review = book.reviews.find(params[:id])
     render json: review, status: :ok
   end
 
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
       book = find_book
       review = book.reviews.find(params[:id])
 
-      if review.update(review_params)
+      if review.update!(review_params)
         render json: review, status: :ok
       else
         render json: { error: "Failed to update review" }, status: :unprocessable_entity
