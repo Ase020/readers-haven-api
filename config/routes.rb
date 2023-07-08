@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#show"
   delete '/logout', to: 'sessions#destroy'
   post '/password/reset', to: 'users#reset'
+  get '/users/:id', to: 'users#user'
   # get '/search', to: 'books#search'
 
 end
