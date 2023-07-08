@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :author_publishers
   resources :users, only: [:index]
   resources :authors, only: [:index, :show]
-  resources :publishers, only: [:show]
+  resources :publishers, only: [:index, :show]
   resources :books do
   # resources :authors, only: [:show]
   resources :reviews
