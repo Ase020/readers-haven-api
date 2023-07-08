@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_review_not_found
   def index
     # reviews = Review.all
     # render json: reviews, status: :ok
@@ -53,6 +54,10 @@ class ReviewsController < ApplicationController
 
   def review_params
       params.require(:review).permit(:description, :star_rating, :user_id, :book_id)
+  end
+
+  def render_review_not_found
+    render json: {error: "Review not found"}, status: :not_found
   end
 end
 
