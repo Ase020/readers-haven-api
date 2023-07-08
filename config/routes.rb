@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :reviews
   get '/author', to: 'authors#book_author'
   end
-  post "/signup", to: "users#create"
 
+  post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post '/login', to: "sessions#show"
   delete '/logout', to: 'sessions#destroy'

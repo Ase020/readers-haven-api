@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :render_review_not_found
   def index
     # reviews = Review.all
     # render json: reviews, status: :ok
@@ -9,15 +10,25 @@ class ReviewsController < ApplicationController
 
   def show
     book = find_book
-    review = book.reviews.find(params[:review_id])
+    review = book.reviews.find(params[:id])
     render json: review, status: :ok
+  end
+
+  def create
+    book = find_book
+    review = book.reviews.create!(review_params)
+    if review
+      render json: review, status: :created
+    else
+      render json: {error: "Failed to create review!"}, status: :unprocessable_entity
+    end
   end
 
   def update
       book = find_book
       review = book.reviews.find(params[:id])
 
-      if review.update(review_params)
+      if review.update!(review_params)
         render json: review, status: :ok
       else
         render json: { error: "Failed to update review" }, status: :unprocessable_entity
@@ -42,7 +53,11 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-      params.require(:review).permit(:description, :star_rating, :user_id)
+      params.require(:review).permit(:description, :star_rating, :user_id, :book_id)
+  end
+
+  def render_review_not_found
+    render json: {error: "Review not found"}, status: :not_found
   end
 end
 
