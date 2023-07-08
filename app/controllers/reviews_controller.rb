@@ -13,6 +13,16 @@ class ReviewsController < ApplicationController
     render json: review, status: :ok
   end
 
+  def create
+    book = find_book
+    review = book.reviews.create!(review_params)
+    if review
+      render json: review, status: :created
+    else
+      render json: {error: "Failed to create review!"}, status: :unprocessable_entity
+    end
+  end
+
   def update
       book = find_book
       review = book.reviews.find(params[:id])
@@ -42,7 +52,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-      params.require(:review).permit(:description, :star_rating, :user_id)
+      params.require(:review).permit(:description, :star_rating, :user_id, :book_id)
   end
 end
 
