@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    book = Book.find(params[:id])
+    book = find_book
     render json: book, serializer: BookReviewsPublisherSerializer, status: :ok
   end
 
@@ -23,7 +23,22 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    book = find_book
+
+    if book.destroy
+      render json: { message: "Book deleted successfully" }, status: :ok
+    else
+      render json: { error: "Failed to delete book" }, status: :unprocessable_entity
+    end
+
+  end
+
   private
+  def find_book
+    Book.find(params[:id])
+  end
+
   def authorize
     render json: { error: "Unauthorized"}, status: :unauthorized unless session.include? :user_id
   end
